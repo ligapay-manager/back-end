@@ -26,3 +26,11 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+## Meio de comunicação
+https://ligapay.slack.com/messages/CGE844TRC/
+
+## Preparação do ambiente
+1.
+2.
+3.
