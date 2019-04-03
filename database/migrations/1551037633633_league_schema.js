@@ -6,7 +6,7 @@ class LeagueSchema extends Schema {
       table.increments();
       table.string('name').notNullable();
       table.string('description').notNullable();
-      table.timestamps();
+      table.timestamps(true, true);
     });
   }
 

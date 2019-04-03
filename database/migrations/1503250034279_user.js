@@ -7,14 +7,7 @@ class UserSchema extends Schema {
       table.string('username', 80).notNullable().unique();
       table.string('email', 254).notNullable().unique();
       table.string('password', 60).notNullable();
-      table
-        .integer('league_id')
-        .unsigned()
-        .references('id')
-        .inTable('leagues')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      table.timestamps();
+      table.timestamps(true, true);
     });
   }
 
