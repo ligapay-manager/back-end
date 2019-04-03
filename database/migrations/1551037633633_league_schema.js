@@ -1,6 +1,3 @@
-
-
-/** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
 
 class LeagueSchema extends Schema {
@@ -9,7 +6,7 @@ class LeagueSchema extends Schema {
       table.increments();
       table.string('name').notNullable();
       table.string('description').notNullable();
-      table.timestamps();
+      table.timestamps(true, true);
     });
   }
 

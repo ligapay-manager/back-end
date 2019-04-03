@@ -1,6 +1,3 @@
-
-
-/** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema');
 
 class TokensSchema extends Schema {
@@ -11,7 +8,7 @@ class TokensSchema extends Schema {
       table.string('token', 255).notNullable().unique().index();
       table.string('type', 80).notNullable();
       table.boolean('is_revoked').defaultTo(false);
-      table.timestamps();
+      table.timestamps(true, true);
     });
   }
 
