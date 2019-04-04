@@ -1,13 +1,10 @@
 version: 2
 jobs:
   build:
-    machine: true
-    docker:
-    - image: circleci/node:11
+    machine:
+      docker_layer_caching: true
     steps:
     - checkout
-    - setup_remote_docker:
-        docker_layer_caching: true
     - run:
         name: Docker compose build
         command: docker-compose build
