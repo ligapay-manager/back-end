@@ -1,0 +1,19 @@
+sudo: required
+language: node_js
+
+node_js:
+ - 11.13
+
+services:
+  - docker
+
+install:
+  - npm i # just to be sure
+  - docker-compose up -d --build
+
+before_script:
+  - docker exec ligapay-adonis npm run lint
+  - docker exec ligapay-adonis adonis migration:run
+
+script:
+  - docker exec ligapay-adonis npm test
