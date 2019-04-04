@@ -7,7 +7,12 @@ node_js:
 services:
   - docker
 
-script:
+install:
   - docker-compose up -d --build
+
+before_script:
+  - docker exec ligapay-adonis npm run lint
   - docker exec ligapay-adonis adonis migration:run
+
+script:
   - docker exec ligapay-adonis npm test
