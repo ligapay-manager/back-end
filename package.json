@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"node ace test\"",
-    "lint": "node node_modules/eslint/bin/eslint ./*.js",
+    "lint": "eslint ./*.js",
     "lint:fix": "prettier-eslint \"**/*.js\""
   },
   "keywords": [

@@ -8,6 +8,7 @@ services:
   - docker
 
 install:
+  - npm i # just to be sure
   - docker-compose up -d --build
 
 before_script:
