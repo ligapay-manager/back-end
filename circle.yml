@@ -5,28 +5,23 @@ jobs:
     - image: circleci/node:11
     steps:
     - checkout
+    - setup_remote_docker:
+      docker_layer_caching: true
     - run:
-        name: docker compose build
+        name: Docker compose build
         command: docker-compose build
-
-  test:
-    docker:
-    - image: circleci/node:11
-    steps:
     - run:
-        name: start containers
+        name: Start containers
         command: docker-compose up -d
     - run:
-        name: apply migrations
+        name: Apply migrations
         command: docker exec ligapay-adonis adonis migration:run
     - run:
-        name: run tests
+        name: Run tests
         command: docker exec ligapay-adonis npm test
+
 workflows:
   version: 2
-  build-test:
+  build:
     jobs:
     - build
-    - test:
-        requires:
-        - build
