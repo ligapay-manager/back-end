@@ -1,29 +1,27 @@
 version: 2
-
 jobs:
   build:
     docker:
-      - image: circleci/node:11
-    
+    - image: circleci/node:11
     steps:
-      - checkout
-      - run:
+    - checkout
+    - run:
         name: build docker image
         command: docker-compose up -d --build
-
+    - run:
+        name: migrations
+        command: docker exec ligapay-pg adonis migration:run
   test:
     docker:
-      - image: circleci/node:11
-    
+    - image: circleci/node:11
     steps:
-      - checkout
-      - run:
+    - checkout
+    - run:
         name: run tests
         command: docker exec ligapay-adonis npm test
-
 workflows:
   version: 2
   build-test:
     jobs:
-      - build
-      - test
+    - build
+    - test
