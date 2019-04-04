@@ -6,16 +6,19 @@ jobs:
     steps:
     - checkout
     - run:
-        name: build docker image
-        command: docker-compose up -d --build
-    - run:
-        name: migrations
-        command: docker exec ligapay-pg adonis migration:run
+        name: docker compose build
+        command: docker-compose build
+
   test:
     docker:
     - image: circleci/node:11
     steps:
-    - checkout
+    - run:
+        name: start containers
+        command: docker-compose up -d
+    - run:
+        name: apply migrations
+        command: docker exec ligapay-adonis adonis migration:run
     - run:
         name: run tests
         command: docker exec ligapay-adonis npm test
@@ -25,5 +28,5 @@ workflows:
     jobs:
     - build
     - test:
-      requires:
+        requires:
         - build
