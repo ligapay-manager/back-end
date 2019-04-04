@@ -1,0 +1,10 @@
+sudo: required
+language: node_js
+
+services:
+  - docker
+
+script:
+  - docker-compose up -d --build
+  - docker exec ligapay-adonis adonis migration:run
+  - docker exec ligapay-adonis npm test
