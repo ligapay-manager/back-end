@@ -20,7 +20,7 @@ test:
       - checkout
       - run:
         name: run tests
-        command: echo 'to be implemented'
+        command: docker exec ligapay-adonis npm test
 
 workflows:
   version: 2
