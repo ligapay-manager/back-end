@@ -11,8 +11,7 @@ jobs:
         name: build docker image
         command: docker-compose up -d --build
 
-test:
-  build:
+  test:
     docker:
       - image: circleci/node:11
     
