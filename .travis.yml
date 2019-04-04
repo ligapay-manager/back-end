@@ -5,8 +5,10 @@ services:
 
 before_install:
   - docker-compose up -d --build
-  - docker exec ligapay-adonis npm i
-  - docker exec ligapay-adonis adonis migration:run
+
+install:
+  - docker exec ligapay-adonis npm i && adonis migration:run
 
 script:
   - docker exec ligapay-adonis adonis test
+  
