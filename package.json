@@ -1,13 +1,13 @@
 {
-  "name": "adonis-api-app",
-  "version": "4.1.0",
+  "name": "ligapay-backend",
+  "version": "0.0.1",
   "adonis-version": "4.1.0",
-  "description": "Adonisjs boilerplate for API server with pre-configured JWT",
-  "main": "index.js",
+  "description": "LigaPay Web Service",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"node ace test\"",
-    "lint": "eslint ./*.js",
+    "lint": "node node_modules/eslint/bin/eslint ./*.js",
     "lint:fix": "prettier-eslint \"**/*.js\""
   },
   "keywords": [
