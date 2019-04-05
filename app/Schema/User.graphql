@@ -1,0 +1,12 @@
+scalar DateTime
+
+type Query {
+  allUsers: [User]
+}
+
+type User {
+  email: String!,
+  username: String!
+  created_at: DateTime,
+  updated_at: DateTime
+}

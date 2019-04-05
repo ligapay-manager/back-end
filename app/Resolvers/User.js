@@ -1,7 +1,11 @@
+const User = use('App/Models/User');
+
 module.exports = {
   Query: {
-    allUsers: () => [{
-      usename: 'oi',
-    }],
+    allUsers: async () => {
+      const { rows: users } = await User.all();
+
+      return users;
+    },
   },
 };
