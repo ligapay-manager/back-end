@@ -13,7 +13,7 @@ services:
     volumes:
       - ./:/home/ligapay
     ports:
-      - 3333
+      - 3333:3333
 
   postgres:
     image: postgres:11.2-alpine
