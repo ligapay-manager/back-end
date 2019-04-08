@@ -15,10 +15,6 @@ class User extends Model {
   tokens() {
     return this.hasMany('App/Models/Token');
   }
-
-  static castDates(field, value) {
-    return value.toDate();
-  }
 }
 
 module.exports = User;

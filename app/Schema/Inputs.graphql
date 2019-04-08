@@ -1,0 +1,10 @@
+input UserInput {
+  email: String!,
+  username: String!,
+  password: String!
+}
+
+input Paginate {
+	current: Int! = 1
+	perPage: Int! = 10
+}
