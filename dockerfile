@@ -1,20 +1,15 @@
 FROM jwilder/dockerize AS dockerize
 
-FROM node:11-alpine
-
-COPY --from=dockerize /usr/local/bin/dockerize /usr/local/bin
-
+FROM node:11-alpine as build
 WORKDIR /home/ligapay
+COPY . ./
+RUN npm i
 
-COPY package.json .
-
-COPY .env .
-
-RUN npm i -g @adonisjs/cli && \
-    npm i
+FROM node:11-alpine
+WORKDIR /home/ligapay
+COPY --from=dockerize /usr/local/bin/dockerize /usr/local/bin
+COPY --from=build /home/ligapay ./
+RUN npm i -g @adonisjs/cli
 
 ENTRYPOINT [ "dockerize", "-template", ".env.tmpl:.env" ]
-
-EXPOSE 3333
-
 CMD [ "sh", "start.sh" ]
