@@ -5,10 +5,11 @@
   "description": "LigaPay Web Service",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "adonis serve",
     "test": "echo \"node ace test\"",
     "lint": "eslint ./*.js",
-    "lint:fix": "prettier-eslint \"**/*.js\""
+    "lint:fix": "prettier-eslint \"**/*.js\"",
+    "migration:refresh": "adonis migration:refresh"
   },
   "keywords": [
     "adonisjs",
