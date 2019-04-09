@@ -1,8 +1,9 @@
 const { reduce, pickBy } = require('lodash');
 
-function authorize(object, authRule = async () => { }, options = { filters: [], only: [] }) {
-  const filters = options.filters || [];
-  const only = options.only || [];
+const defaultOptions = { filters: [], only: [] };
+
+function authorize(object, authRule = async () => { }, options) {
+  const { filters, only } = { ...defaultOptions, ...options };
 
   const fields = pickBy(object, (value, key) => {
     if (typeof value === 'object') {

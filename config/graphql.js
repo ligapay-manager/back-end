@@ -3,7 +3,7 @@ const { join } = require('path');
 module.exports = {
   options: {
     debug: false,
-    endpointURL: '/gql',
+    endpointURL: '/',
   },
 
   schema: join(__dirname, '../app/Schema'),

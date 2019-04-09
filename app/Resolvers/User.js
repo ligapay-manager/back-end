@@ -17,6 +17,20 @@ const Queries = {
 
       return User.create({ email, password, username });
     },
+
+    login: async (_, { info }, { auth }) => {
+      if (info.refreshToken) {
+        return auth
+          .newRefreshToken()
+          .generateForRefreshToken(info.refreshToken, true);
+      }
+
+      const { username, password } = info;
+
+      return auth
+        .withRefreshToken()
+        .attempt(username, password, true);
+    },
   },
 };
 

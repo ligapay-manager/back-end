@@ -6,5 +6,5 @@ Route.group(() => {
     passHeader: `'Authorization': '${context.request.header('Authorization')}'`,
   }));
 
-  Route.get('/ui', context => GraphQLServer.handleUI(context));
-}).prefix('gql');
+  Route.get('/', context => GraphQLServer.handleUI(context));
+});
