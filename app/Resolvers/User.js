@@ -24,4 +24,4 @@ const authRule = async ({ auth }) => {
   await auth.check();
 };
 
-module.exports = authorize(Queries, authRule, ['allUsers']);
+module.exports = authorize(Queries, authRule, { filters: ['login'] });

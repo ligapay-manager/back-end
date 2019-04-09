@@ -1,29 +1,40 @@
-const { reduce } = require('lodash');
+const { reduce, pickBy } = require('lodash');
 
-function authorize(object, authRule = async () => { }, filters = []) {
-  return reduce(object, (res, value, key) => {
-    if (filters.includes(key)) {
-      res[key] = value;
-    } else {
-      switch (typeof value) {
-        case 'object':
-          res[key] = authorize(value, authRule, filters);
-          break;
+function authorize(object, authRule = async () => { }, options = { filters: [], only: [] }) {
+  const filters = options.filters || [];
+  const only = options.only || [];
 
-        case 'function':
-          res[key] = async (_, args, context) => {
-            await authRule(context);
-
-            return value(_, args, context);
-          };
-          break;
-
-        // no default
-      }
+  const fields = pickBy(object, (value, key) => {
+    if (typeof object[key] === 'object') {
+      return true;
     }
 
-    return res;
+    return only.length
+      ? only.includes(key) && !filters.includes(key)
+      : !filters.includes(key);
+  });
+
+  const res = reduce(fields, (partial, value, key) => {
+    switch (typeof value) {
+      case 'object':
+        partial[key] = authorize(value, authRule, options);
+        break;
+
+      case 'function':
+        partial[key] = async (_, args, context) => {
+          await authRule(context);
+
+          return value(_, args, context);
+        };
+        break;
+
+      // no default
+    }
+
+    return partial;
   }, {});
+
+  return { ...object, ...res };
 }
 
 module.exports = {
