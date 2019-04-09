@@ -2,7 +2,7 @@ const { join } = require('path');
 
 module.exports = {
   options: {
-    debug: true,
+    debug: false,
     endpointURL: '/gql',
   },
 
