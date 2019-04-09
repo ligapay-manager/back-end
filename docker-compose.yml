@@ -6,7 +6,6 @@ services:
     container_name: ligapay-adonis
     image: ligapay:latest
     env_file: .env
-    command: adonis serve --dev
 
     depends_on:
       - postgres
