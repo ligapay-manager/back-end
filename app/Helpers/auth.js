@@ -18,9 +18,7 @@ function authorize(object, authRule = async () => { }, filters = []) {
           };
           break;
 
-        default:
-          res[key] = value;
-          break;
+        // no default
       }
     }
 
