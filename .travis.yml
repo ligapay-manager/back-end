@@ -13,7 +13,12 @@ install:
 
 before_script:
   - docker exec ligapay-adonis npm run lint
-  - docker exec ligapay-adonis adonis migration:run
 
 script:
   - docker exec ligapay-adonis npm test
+
+deploy:
+  provider: script
+  script: sh docker/deploy.sh
+  on:
+      branch: develop

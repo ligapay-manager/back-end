@@ -16,6 +16,7 @@ const providers = [
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
   '@adonisjs/lucid/providers/LucidProvider',
+  'adonis-graphql/providers/GraphQLProvider',
 ];
 
 /*
@@ -53,7 +54,9 @@ const aliases = {};
 | Here you store ace commands for your package
 |
 */
-const commands = [];
+const commands = [
+  'App/Commands/CreateUser',
+];
 
 module.exports = {
   providers, aceProviders, aliases, commands,

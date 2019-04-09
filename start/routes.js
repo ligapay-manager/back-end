@@ -1,7 +1,10 @@
 const Route = use('Route');
+const GraphQLServer = use('GraphQLServer');
 
-Route.get('/', () => ({ Hi: 'Adonis' }));
+Route.group(() => {
+  Route.post('/', context => GraphQLServer.handle(context, {
+    passHeader: `'Authorization': '${context.request.header('Authorization')}'`,
+  }));
 
-Route.post('/users', 'UserController.create');
-Route.post('/sessions', 'SessionController.create');
-Route.post('/leagues', 'LeagueController.create');
+  Route.get('/', context => GraphQLServer.handleUI(context));
+});
