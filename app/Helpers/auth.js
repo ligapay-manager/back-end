@@ -5,7 +5,7 @@ function authorize(object, authRule = async () => { }, options = { filters: [], 
   const only = options.only || [];
 
   const fields = pickBy(object, (value, key) => {
-    if (typeof object[key] === 'object') {
+    if (typeof value === 'object') {
       return true;
     }
 
