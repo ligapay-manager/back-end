@@ -31,6 +31,6 @@ adonis migration:run
 https://ligapay.slack.com/messages/CGE844TRC/
 
 ## Preparação do ambiente
-1.
-2.
-3.
+1. Instale o docker. (https://www.docker.com/products/docker-desktop)
+2. Na pasta raíz do projeto rode o comando: docker-compose up
+3. Caso as tabelas no banco não sejam criadas rode o comando: docker exec -it ligapay-adonis sh
