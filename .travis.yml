@@ -8,8 +8,8 @@ services:
   - docker
 
 install:
-  - npm i # just to be sure
   - docker-compose up -d --build
+  - npm i
 
 before_script:
   - docker exec ligapay-adonis npm run lint

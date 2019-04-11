@@ -1,5 +1,3 @@
-
-
 /*
 |--------------------------------------------------------------------------
 | Providers
@@ -28,9 +26,7 @@ const providers = [
 | Providers for migrations, tests etc.
 |
 */
-const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider',
-];
+const aceProviders = ['@adonisjs/lucid/providers/MigrationsProvider'];
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +50,11 @@ const aliases = {};
 | Here you store ace commands for your package
 |
 */
-const commands = [
-  'App/Commands/CreateUser',
-];
+const commands = ['App/Commands/CreateUser'];
 
 module.exports = {
-  providers, aceProviders, aliases, commands,
+  providers,
+  aceProviders,
+  aliases,
+  commands,
 };

@@ -1,14 +1,11 @@
-
-
 const { Command } = require('@adonisjs/ace');
 
 class CreateUser extends Command {
   static get signature() {
     return `
       user:create
-      { username: username }
-      { password: password }
       { email: email }
+      { password: password }
      `;
   }
 
@@ -21,13 +18,13 @@ class CreateUser extends Command {
     const User = use('App/Models/User');
 
     const user = await User.query()
-      .where({ username })
+      .where({ email })
       .first();
 
     if (user !== null) {
-      this.info('Admin user already exists. Skipping...');
+      this.info('User already exists. Skipping...');
     } else {
-      await User.create({ username, password, email });
+      await User.create({ password, email });
 
       this.success('✔ User created.');
     }
