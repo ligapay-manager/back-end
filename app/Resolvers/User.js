@@ -35,7 +35,7 @@ const Queries = {
       } catch (error) {
         switch (error.code) {
           case 'E_USER_NOT_FOUND': {
-            const { token } = api.login(email, password);
+            const { token } = await api.login(email, password);
 
             if (!token) {
               throw 'Invalid credentials.';
