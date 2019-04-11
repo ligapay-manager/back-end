@@ -4,6 +4,12 @@ input UserInput {
   password: String!
 }
 
+input BankDetailsInput {
+  bank: String!,
+  branch: String!,
+  account: String!
+}
+
 input Paginate {
 	current: Int! = 1
 	perPage: Int! = 10
