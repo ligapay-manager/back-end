@@ -5,11 +5,11 @@
   "description": "LigaPay Web Service",
   "main": "server.js",
   "scripts": {
-    "start": "adonis serve",
+    "start": "adonis serve --dev",
     "test": "echo \"node ace test\"",
     "lint": "eslint ./*.js",
-    "lint:fix": "prettier-eslint \"**/*.js\"",
-    "migration:refresh": "adonis migration:refresh"
+    "lint:fix": "prettier-eslint --write \"**/*.js\"",
+    "migration:run": "adonis migration:run"
   },
   "keywords": [
     "adonisjs",
@@ -22,12 +22,14 @@
     "@adonisjs/ace": "^5.0.8",
     "@adonisjs/auth": "^3.0.7",
     "@adonisjs/bodyparser": "^2.0.5",
+    "@adonisjs/cli": "^4.0.11",
     "@adonisjs/cors": "^1.0.7",
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.9",
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/lucid": "^6.1.3",
     "adonis-graphql": "^1.0.1-alpha-4",
+    "axios": "^0.18.0",
     "graphql-iso-date": "^3.6.1",
     "lodash": "^4.17.11",
     "pg": "^7.9.0"
@@ -47,8 +49,8 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier-eslint",
-      "eslint --fix",
+      "eslint",
+      "prettier-eslint --write",
       "git add"
     ]
   },

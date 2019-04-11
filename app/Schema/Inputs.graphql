@@ -1,6 +1,5 @@
-input UserInput {
+input NewUser {
   email: String!,
-  username: String!,
   password: String!
 }
 
@@ -10,7 +9,7 @@ input Paginate {
 }
 
 input LoginInput {
-  username: String,
+  email: String,
   password: String,
   refreshToken: String
 }

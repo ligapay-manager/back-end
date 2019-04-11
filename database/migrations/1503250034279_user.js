@@ -4,10 +4,17 @@ class UserSchema extends Schema {
   up() {
     this.create('users', (table) => {
       table.increments();
-      table.string('username', 80).notNullable().unique();
-      table.string('email', 254).notNullable().unique();
-      table.string('password', 60).notNullable();
+      table
+        .string('email', 256)
+        .notNullable()
+        .unique();
+      table.string('password', 64).notNullable();
+      table.string('globoToken', 256);
       table.timestamps(true, true);
+      table
+        .boolean('deleted')
+        .notNullable()
+        .default(false);
     });
   }
 

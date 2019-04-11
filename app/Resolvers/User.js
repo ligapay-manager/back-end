@@ -1,6 +1,7 @@
 const User = use('App/Models/User');
 
 const { authorize } = require('../Helpers/auth');
+const api = require('../Api/Cartola');
 
 const Queries = {
   Query: {
@@ -19,17 +20,35 @@ const Queries = {
     },
 
     login: async (_, { info }, { auth }) => {
-      if (info.refreshToken) {
-        return auth
-          .newRefreshToken()
-          .generateForRefreshToken(info.refreshToken, true);
+      const { password, email, refreshToken } = info;
+
+      if (refreshToken) {
+        return auth.newRefreshToken().generateForRefreshToken(refreshToken, true);
       }
 
-      const { username, password } = info;
+      if (!password || !email) {
+        throw 'Email and password must be provided.';
+      }
 
-      return auth
-        .withRefreshToken()
-        .attempt(username, password, true);
+      try {
+        return await auth.withRefreshToken().attempt(email, password, true);
+      } catch (error) {
+        switch (error.code) {
+          case 'E_USER_NOT_FOUND': {
+            const { token } = api.login(email, password);
+
+            if (!token) {
+              throw 'Invalid credentials.';
+            }
+
+            await User.create({ email, password, globoToken: token });
+            return auth.withRefreshToken().attempt(email, password, true);
+          }
+
+          default:
+            throw 'Invalid credentials.';
+        }
+      }
     },
   },
 };
