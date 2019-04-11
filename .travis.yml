@@ -8,13 +8,14 @@ services:
   - docker
 
 install:
-  - docker-compose up -d --build
+  - docker build . -t ligapay:latest
   - npm i
 
 before_script:
-  - docker exec ligapay-adonis npm run lint
+  - docker-compose up -d
 
 script:
+  - docker exec ligapay-adonis npm run lint
   - docker exec ligapay-adonis npm test
 
 deploy:
