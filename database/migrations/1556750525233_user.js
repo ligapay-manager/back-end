@@ -5,6 +5,10 @@ class UserSchema extends Schema {
     this.create('users', (table) => {
       table.increments();
       table
+        .integer('wallet_id')
+        .references('id')
+        .inTable('wallets');
+      table
         .string('email', 256)
         .notNullable()
         .unique();
