@@ -16,6 +16,10 @@ class User extends Model {
     });
   }
 
+  wallet() {
+    return this.hasOne('App/Models/Wallet');
+  }
+
   tokens() {
     return this.hasMany('App/Models/Token');
   }

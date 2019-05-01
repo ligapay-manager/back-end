@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   adonis:
@@ -22,3 +22,18 @@ services:
       - /var/lib/postgresql/data
     ports:
       - 5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ligapay-pgadmin
+
+    volumes:
+      - /var/lib/pgadmin
+      - /pgadmin4
+    depends_on:
+      - postgres
+    ports:
+      - 80:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=ligapay@ligapay.com
+      - PGADMIN_DEFAULT_PASSWORD=ligapay
