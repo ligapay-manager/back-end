@@ -1,0 +1,16 @@
+type Query {
+  allUsers(paginate: Paginate): [User],
+}
+
+type Mutation {
+  addBankDetails(bankDetails: BankDetailsInput!): BankDetails,
+  deleteBankDetails(bankDetails: BankDetailsInput!): BankDetails
+}
+
+type BankDetails {
+  bank: String!,
+  branch: String!,
+  account: String!,
+  created_at: String!,
+  updated_at: String!
+}
