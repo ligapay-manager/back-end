@@ -17,7 +17,7 @@ class User extends Model {
   }
 
   wallet() {
-    return this.hasOne('App/Models/Wallet');
+    return this.belongsTo('App/Models/Wallet');
   }
 
   tokens() {

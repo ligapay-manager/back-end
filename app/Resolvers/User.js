@@ -1,4 +1,5 @@
 const User = use('App/Models/User');
+const UserService = use('App/Services/User');
 
 const { authorize } = require('../Helpers/auth');
 const api = require('../Api/Cartola');
@@ -41,7 +42,7 @@ const Queries = {
               throw 'Invalid credentials.';
             }
 
-            await User.create({ email, password, globoToken: token });
+            await UserService.create({ email, password, globoToken: token });
             return auth.withRefreshToken().attempt(email, password, true);
           }
 

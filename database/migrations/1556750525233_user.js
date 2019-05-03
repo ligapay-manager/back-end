@@ -6,6 +6,8 @@ class UserSchema extends Schema {
       table.increments();
       table
         .integer('wallet_id')
+        .unsigned()
+        .notNullable()
         .references('id')
         .inTable('wallets');
       table
