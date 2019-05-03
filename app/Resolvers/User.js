@@ -7,17 +7,55 @@ const api = require('../Api/Cartola');
 const Queries = {
   Query: {
     allUsers: async (_, { paginate = { perPage: 10, current: 1 } }) => {
-      const { rows: users } = await User.query().paginate(paginate.current, paginate.perPage);
+      const { rows: users } = await User.query()
+        .with('wallet')
+        .paginate(paginate.current, paginate.perPage);
 
       return users.map(e => e.toJSON());
+    },
+
+    getUser: async (_, { where }) => {
+      const user = await User.query()
+        .where(where)
+        .first();
+
+      return user ? user.toJSON() : null;
     },
   },
 
   Mutation: {
     addUser: async (_, { user }) => {
-      const { email, password, username } = user;
+      const { email, password } = user;
 
-      return User.create({ email, password, username });
+      const persistedUser = await UserService.create({ email, password });
+      await persistedUser.load('wallet');
+
+      return persistedUser.toJSON();
+    },
+
+    editUser: async (_, { user: { id, ...data } }) => {
+      const user = await User.find(id);
+
+      if (!user) {
+        return null;
+      }
+
+      user.merge(data);
+
+      try {
+        await user.save();
+        await user.load('wallet');
+
+        return user.toJSON();
+      } catch ({ code }) {
+        switch (code) {
+          case '23505':
+            throw 'Unique violation.';
+
+          default:
+            throw 'An error occurred.';
+        }
+      }
     },
 
     login: async (_, { info }, { auth }) => {

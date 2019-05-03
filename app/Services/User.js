@@ -4,8 +4,9 @@ const Wallet = use('App/Models/Wallet');
 class UserService {
   static async create(data) {
     const wallet = await Wallet.create(null);
-    const user = await User.create(data);
+    const user = new User();
 
+    user.fill(data);
     await wallet.user().save(user);
 
     return user;

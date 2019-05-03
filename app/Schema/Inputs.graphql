@@ -13,3 +13,14 @@ input LoginInput {
   password: String,
   refreshToken: String
 }
+
+input WhereUser {
+  id: ID,
+  wallet_id: ID,
+  email: String,
+}
+input EditUser {
+  id: ID!,
+  email: String,
+  deleted: Boolean
+}

@@ -1,13 +1,17 @@
 type Query {
   allUsers(paginate: Paginate): [User],
+  getUser(where: WhereUser): User
 }
 
 type Mutation {
   addUser(user: NewUser!): User,
+  editUser(user: EditUser!): User,
   login(info: LoginInput!): LoginInfo!
 }
 
 type User {
+  id: ID!,
+  wallet: Wallet!,
   email: String!,
   created_at: String!,
   updated_at: String!
@@ -18,3 +22,4 @@ type LoginInfo {
   token: String!,
   refreshToken: String
 }
+
