@@ -9,7 +9,10 @@ class TeamSchema extends Schema {
         .unsigned()
         .references('id')
         .inTable('users');
-      table.string('name').notNullable();
+      table
+        .string('name')
+        .unique()
+        .notNullable();
       table
         .string('cartolaSlug')
         .unique()
