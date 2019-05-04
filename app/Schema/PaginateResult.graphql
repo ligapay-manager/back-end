@@ -1,0 +1,6 @@
+interface PaginateResult {
+  total: Int!
+  perPage: Int!
+  page: Int!
+  lastPage: Int!
+}

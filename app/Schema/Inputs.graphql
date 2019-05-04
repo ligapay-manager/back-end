@@ -1,26 +1,39 @@
 input NewUser {
-  email: String!,
+  email: String!
   password: String!
 }
 
 input Paginate {
-	current: Int! = 1
-	perPage: Int! = 10
+  current: Int! = 1
+  perPage: Int! = 10
 }
 
 input LoginInput {
-  email: String,
-  password: String,
+  email: String
+  password: String
   refreshToken: String
 }
 
 input WhereUser {
-  id: ID,
-  wallet_id: ID,
-  email: String,
+  id: Int
+  wallet_id: Int
+  email: String
 }
 input EditUser {
-  id: ID!,
-  email: String,
+  email: String
+  deleted: Boolean
+}
+
+input WhereTeam {
+  id: Int
+  user_id: Int
+  name: String
+  avatar: String
+  deleted: Boolean
+}
+
+input EditTeam {
+  name: String
+  avatar: String
   deleted: Boolean
 }

@@ -3,8 +3,8 @@ type Query {
 }
 
 type Wallet {
-  id: ID!,
-  amount: Int!,
-  created_at: String!,
-  updated_at: String!,
+  id: Int!
+  amount: Int!
+  created_at: String!
+  updated_at: String!
 }

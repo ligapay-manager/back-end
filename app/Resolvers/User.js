@@ -4,19 +4,24 @@ const UserService = use('App/Services/User');
 const { authorize } = require('../Helpers/auth');
 const api = require('../Api/Cartola');
 
+const { checkWhere } = require('../Helpers/graphql');
+
 const Queries = {
   Query: {
     allUsers: async (_, { paginate = { perPage: 10, current: 1 } }) => {
-      const { rows: users } = await User.query()
+      const { pages, rows: users } = await User.query()
         .with('wallet')
+        .with('team')
         .paginate(paginate.current, paginate.perPage);
 
-      return users.map(e => e.toJSON());
+      return { ...pages, result: users.map(e => e.toJSON()) };
     },
 
     getUser: async (_, { where }) => {
       const user = await User.query()
         .where(where)
+        .with('wallet')
+        .with('team')
         .first();
 
       return user ? user.toJSON() : null;
@@ -28,13 +33,17 @@ const Queries = {
       const { email, password } = user;
 
       const persistedUser = await UserService.create({ email, password });
-      await persistedUser.load('wallet');
+      await persistedUser.loadMany(['wallet', 'team']);
 
       return persistedUser.toJSON();
     },
 
-    editUser: async (_, { user: { id, ...data } }) => {
-      const user = await User.find(id);
+    editUser: async (_, { where, data }) => {
+      checkWhere(where);
+
+      const user = await User.query()
+        .where(where)
+        .first();
 
       if (!user) {
         return null;
@@ -44,7 +53,7 @@ const Queries = {
 
       try {
         await user.save();
-        await user.load('wallet');
+        await user.loadMany(['wallet', 'team']);
 
         return user.toJSON();
       } catch ({ code }) {
