@@ -11,6 +11,7 @@ type Team {
   id: Int!
   user: User!
   name: String!
+  cartolaSlug: String!
   avatar: String
   created_at: String!
   updated_at: String!

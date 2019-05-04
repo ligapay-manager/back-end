@@ -12,6 +12,7 @@ type Mutation {
 
 type User {
   id: Int!
+  cartolaName: String!
   wallet: Wallet!
   team: Team!
   email: String!
