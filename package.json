@@ -7,7 +7,7 @@
   "scripts": {
     "start": "adonis serve --dev",
     "test": "echo \"node ace test\"",
-    "lint": "eslint ./*.js",
+    "lint": "eslint ./",
     "lint:fix": "prettier-eslint --write \"**/*.js\"",
     "migration:run": "adonis migration:run"
   },

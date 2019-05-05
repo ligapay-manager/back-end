@@ -5,7 +5,7 @@ module.exports = {
   Query: {
     allLeagues: async (_, { paginate = { perPage: 10, current: 1 } }) => {
       const { pages, rows: leagues } = await League.query()
-        // .with('type')
+        .with('type')
         // .with('subscriptions')
         // .with('seasons')
         .with('wallet')
@@ -20,7 +20,7 @@ module.exports = {
     addLeague: async (_, { data }) => {
       const league = await LeagueService.create(data);
 
-      await league.loadMany(['wallet', 'manager']);
+      await league.loadMany(['wallet', 'manager', 'type']);
 
       return league.toJSON();
     },

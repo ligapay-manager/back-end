@@ -4,7 +4,10 @@ class LeagueTypeSchema extends Schema {
   up() {
     this.create('league_types', (table) => {
       table.increments();
-      table.string('name').notNullable();
+      table
+        .string('name')
+        .unique()
+        .notNullable();
       table.string('description');
       table.timestamps(true, true);
       table

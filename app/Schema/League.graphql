@@ -1,5 +1,5 @@
 type Query {
-  allLeagues(paginate: Paginate): PaginateLeague
+  allLeagues(paginate: Paginate): PaginateLeague!
   # getLeague(where: WhereLeague!): League
 }
 
@@ -19,6 +19,7 @@ type League {
   updated_at: String!
   manager: User!
   wallet: Wallet!
+  type: LeagueType!
 }
 
 type PaginateLeague implements PaginateResult {
