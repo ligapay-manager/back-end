@@ -27,6 +27,10 @@ class User extends Model {
   team() {
     return this.hasOne('App/Models/Team');
   }
+
+  managedLeagues() {
+    return this.hasMany('App/Models/League');
+  }
 }
 
 module.exports = User;

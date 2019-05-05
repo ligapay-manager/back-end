@@ -15,6 +15,7 @@ type User {
   cartolaName: String!
   wallet: Wallet!
   team: Team!
+  managedLeagues: [League]
   email: String!
   created_at: String!
   updated_at: String!

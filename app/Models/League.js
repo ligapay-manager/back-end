@@ -16,6 +16,10 @@ class League extends Model {
   wallet() {
     return this.hasOne('App/Models/Wallet');
   }
+
+  manager() {
+    return this.belongsTo('App/Models/User');
+  }
 }
 
 module.exports = League;

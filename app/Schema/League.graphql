@@ -1,0 +1,26 @@
+type Query {
+  allLeagues(paginate: Paginate): PaginateLeague
+  # getLeague(where: WhereLeague!): League
+}
+
+type League {
+  id: Int!
+  name: String!
+  description: String
+  avatar: String
+  limit: Int
+  fee: Int!
+  adminTax: Int!
+  created_at: String!
+  updated_at: String!
+  manager: User!
+  wallet: Wallet!
+}
+
+type PaginateLeague implements PaginateResult {
+  total: Int!
+  perPage: Int!
+  page: Int!
+  lastPage: Int!
+  result: [League]!
+}

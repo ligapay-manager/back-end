@@ -22,6 +22,7 @@ const Queries = {
         .where(where)
         .with('wallet')
         .with('team')
+        .with('managedLeagues')
         .first();
 
       return user ? user.toJSON() : null;
@@ -33,7 +34,7 @@ const Queries = {
       const { email, password } = user;
 
       const persistedUser = await UserService.create({ email, password });
-      await persistedUser.loadMany(['wallet', 'team']);
+      await persistedUser.loadMany(['wallet', 'team', 'managedLeagues']);
 
       return persistedUser.toJSON();
     },
@@ -53,7 +54,7 @@ const Queries = {
 
       try {
         await user.save();
-        await user.loadMany(['wallet', 'team']);
+        await user.loadMany(['wallet', 'team', 'managedLeagues']);
 
         return user.toJSON();
       } catch ({ code }) {
