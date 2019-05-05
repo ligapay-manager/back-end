@@ -21,15 +21,24 @@ class LeagueSchema extends Schema {
         .notNullable()
         .references('id')
         .inTable('wallets');
-      table.string('name').notNullable();
-      table.string('description').notNullable();
+      table
+        .string('name')
+        .unique()
+        .notNullable();
+      table.string('description');
       table.string('avatar', 2048);
       table
         .integer('limit')
         .notNullable()
         .defaultsTo(20);
-      table.bigInteger('fee').notNullable();
-      table.bigInteger('adminTax').notNullable();
+      table
+        .bigInteger('fee')
+        .notNullable()
+        .defaultsTo(0);
+      table
+        .bigInteger('adminTax')
+        .notNullable()
+        .defaultsTo(0);
       table.timestamps(true, true);
     });
   }

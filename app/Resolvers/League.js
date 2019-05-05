@@ -1,4 +1,5 @@
 const League = use('App/Models/League');
+const LeagueService = use('App/Services/League');
 
 module.exports = {
   Query: {
@@ -16,6 +17,12 @@ module.exports = {
   },
 
   Mutation: {
-    //
+    addLeague: async (_, { data }) => {
+      const league = await LeagueService.create(data);
+
+      await league.loadMany(['wallet', 'manager']);
+
+      return league.toJSON();
+    },
   },
 };

@@ -37,3 +37,14 @@ input EditTeam {
   avatar: String
   deleted: Boolean
 }
+
+input NewLeague {
+  name: String!
+  user_id: Int!
+  league_type_id: Int!
+  description: String
+  avatar: String
+  limit: Int
+  fee: Int
+  adminTax: Int
+}

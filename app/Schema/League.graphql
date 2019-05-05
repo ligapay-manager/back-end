@@ -3,6 +3,10 @@ type Query {
   # getLeague(where: WhereLeague!): League
 }
 
+type Mutation {
+  addLeague(data: NewLeague!): League
+}
+
 type League {
   id: Int!
   name: String!
