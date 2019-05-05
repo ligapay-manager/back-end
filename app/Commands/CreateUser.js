@@ -13,7 +13,7 @@ class CreateUser extends Command {
     return 'Create a user if it does not exist';
   }
 
-  async handle({ username, password, email }) {
+  async handle({ password, email }) {
     const Database = use('Database');
     const User = use('App/Models/User');
 

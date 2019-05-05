@@ -1,0 +1,8 @@
+type LeagueType {
+  id: Int!
+  name: String!
+  description: String
+  created_at: String!
+  updated_at: String!
+  deleted: Boolean!
+}

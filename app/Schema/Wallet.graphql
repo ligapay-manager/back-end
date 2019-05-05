@@ -1,0 +1,10 @@
+type Query {
+  allWallets: String!
+}
+
+type Wallet {
+  id: Int!
+  amount: Int!
+  created_at: String!
+  updated_at: String!
+}

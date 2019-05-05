@@ -17,11 +17,19 @@ class User extends Model {
   }
 
   wallet() {
-    return this.hasOne('App/Models/Wallet');
+    return this.belongsTo('App/Models/Wallet');
   }
 
   tokens() {
     return this.hasMany('App/Models/Token');
+  }
+
+  team() {
+    return this.hasOne('App/Models/Team');
+  }
+
+  managedLeagues() {
+    return this.hasMany('App/Models/League');
   }
 }
 

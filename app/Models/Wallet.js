@@ -8,6 +8,10 @@ class Wallet extends Model {
   inputs() {
     return this.hasMany('App/Models/Transaction', 'id', 'wallet_destiny_id');
   }
+
+  user() {
+    return this.hasOne('App/Models/User');
+  }
 }
 
 module.exports = Wallet;

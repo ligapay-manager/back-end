@@ -1,20 +1,36 @@
 type Query {
-  allUsers(paginate: Paginate): [User],
+  allUsers(paginate: Paginate): PaginateUser
+  getUser(where: WhereUser!): User
 }
 
 type Mutation {
-  addUser(user: NewUser!): User,
+  addUser(user: NewUser!): User
+  editUser(where: WhereUser!, data: EditUser): User
+
   login(info: LoginInput!): LoginInfo!
 }
 
 type User {
-  email: String!,
-  created_at: String!,
+  id: Int!
+  cartolaName: String!
+  wallet: Wallet!
+  team: Team!
+  managedLeagues: [League]
+  email: String!
+  created_at: String!
   updated_at: String!
 }
 
 type LoginInfo {
-  type: String!,
-  token: String!,
+  type: String!
+  token: String!
   refreshToken: String
+}
+
+type PaginateUser implements PaginateResult {
+  total: Int!
+  perPage: Int!
+  page: Int!
+  lastPage: Int!
+  result: [User]!
 }

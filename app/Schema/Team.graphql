@@ -1,0 +1,26 @@
+type Query {
+  allTeams(paginate: Paginate): PaginateTeam!
+  getTeam(where: WhereTeam!): Team
+}
+
+type Mutation {
+  editTeam(where: WhereTeam!, data: EditTeam): Team
+}
+
+type Team {
+  id: Int!
+  user: User!
+  name: String!
+  cartolaSlug: String!
+  avatar: String
+  created_at: String!
+  updated_at: String!
+}
+
+type PaginateTeam implements PaginateResult {
+  total: Int!
+  perPage: Int!
+  page: Int!
+  lastPage: Int!
+  result: [Team]!
+}
